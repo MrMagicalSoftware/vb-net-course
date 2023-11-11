@@ -168,10 +168,6 @@ Module Program
         ' Attendi l'input prima di chiudere la console
         Console.ReadLine()
 
-
-
-
-
     End Sub
 End Module
 
@@ -585,9 +581,203 @@ Dim contiene As Boolean = messaggio.Contains("mondo")
 Questi sono solo alcuni esempi di operazioni di base sulle stringhe. VB.NET offre molte altre funzionalità avanzate per la manipolazione delle stringhe, come la formattazione, la sostituzione di sottostringhe, la conversione tra maiuscolo e minuscolo, e altro ancora.
 
 
+_____________________________________
 
 
 
+# diffirenza tra vb.net e vba 
+
+Visual Basic .NET (VB.NET) e Visual Basic for Applications (VBA) sono due varianti di Visual Basic, ma sono utilizzati in contesti molto diversi e presentano alcune differenze significative.
+
+### Contesto di Utilizzo:
+
+- **VB.NET:**
+  - VB.NET è un linguaggio di programmazione completo, orientato agli oggetti, utilizzato per lo sviluppo di applicazioni desktop, web e servizi.
+  - Fa parte della piattaforma .NET e può essere utilizzato per creare applicazioni Windows, servizi Web, applicazioni Web ASP.NET, e altro.
+
+- **VBA:**
+  - VBA è incorporato in applicazioni come Microsoft Excel, Word, Access e altri prodotti della suite Office.
+  - Viene utilizzato principalmente per l'automazione e l'estensione delle funzionalità all'interno di queste applicazioni.
+
+### Piattaforma:
+
+- **VB.NET:**
+  - È parte dell'ecosistema .NET di Microsoft e può essere utilizzato per sviluppare applicazioni multipiattaforma.
+
+- **VBA:**
+  - È strettamente legato alle applicazioni Microsoft Office e non è progettato per sviluppare applicazioni indipendenti dalla piattaforma.
+
+### Supporto per l'Orientamento agli Oggetti:
+
+- **VB.NET:**
+  - Supporta completamente il paradigma di programmazione orientata agli oggetti.
+
+- **VBA:**
+  - Ha il supporto per l'orientamento agli oggetti, ma in modo più limitato rispetto a VB.NET.
+
+### Compilazione:
+
+- **VB.NET:**
+  - Il codice VB.NET viene generalmente compilato in linguaggio intermedio (IL) che viene eseguito sulla Common Language Runtime (CLR) di .NET.
+
+- **VBA:**
+  - Il codice VBA non è compilato come VB.NET. È interpretato e eseguito all'interno dell'ambiente host (ad esempio, Excel o Word).
+
+### Accesso alle API e Librerie:
+
+- **VB.NET:**
+  - Ha accesso completo alle librerie .NET Framework e può utilizzare una vasta gamma di librerie di terze parti.
+
+- **VBA:**
+  - Ha accesso alle API specifiche dell'applicazione host (ad esempio, le API di Excel per VBA all'interno di Microsoft Excel).
+
+### Ambito di Utilizzo:
+
+- **VB.NET:**
+  - Utilizzato per sviluppare applicazioni di grandi dimensioni, sia per il web che per il desktop.
+
+- **VBA:**
+  - Utilizzato principalmente per automatizzare task all'interno delle applicazioni Office, come la creazione di macro in Excel o la personalizzazione di moduli in Access.
+
+In sintesi, mentre entrambi Visual Basic .NET e Visual Basic for Applications condividono alcune similarità linguistiche, le loro differenze principali riguardano l'ambito di utilizzo, la piattaforma di destinazione e le funzionalità disponibili. VB.NET è un linguaggio di programmazione completo, mentre VBA è più specificamente orientato all'automazione all'interno di applicazioni Microsoft Office.
+
+
+# input e output in vb.net
+
+
+In VB.NET, puoi interagire con l'utente utilizzando l'input da tastiera e la visualizzazione di output sulla console o in finestre di dialogo. Di seguito sono riportati alcuni esempi di input e output comuni in VB.NET:
+
+### Input da Tastiera:
+
+#### Console.ReadLine
+
+```vb.net
+Dim input As String
+Console.Write("Inserisci qualcosa: ")
+input = Console.ReadLine()
+Console.WriteLine("Hai inserito: " & input)
+```
+
+### Output su Console:
+
+#### Console.WriteLine
+
+```vb.net
+Dim nome As String = "John"
+Dim eta As Integer = 30
+Console.WriteLine("Il nome è " & nome & " e l'età è " & eta)
+```
+
+#### Console.Write
+
+```vb.net
+Dim numero As Integer = 42
+Console.Write("Il numero è: ")
+Console.Write(numero)
+```
+
+### Output su Finestre di Dialogo:
+
+#### MsgBox
+
+```vb.net
+Dim messaggio As String = "Ciao, mondo!"
+MsgBox(messaggio, MsgBoxStyle.Information, "Messaggio")
+```
+
+### Utilizzo di Variabili per l'Input e l'Output:
+
+```vb.net
+Dim nome As String
+Dim eta As Integer
+
+Console.Write("Inserisci il tuo nome: ")
+nome = Console.ReadLine()
+
+Console.Write("Inserisci la tua età: ")
+eta = Convert.ToInt32(Console.ReadLine())
+
+Console.WriteLine("Ciao, " & nome & "! Hai " & eta & " anni.")
+```
+
+In questo esempio, l'utente inserisce il proprio nome e la propria età attraverso la console, e il programma risponde con un messaggio personalizzato.
+
+
+_________________________
+
+
+# definire e chiamare funzioni 
+
+
+In Visual Basic .NET (VB.NET), puoi definire e chiamare funzioni per organizzare il tuo codice in blocchi riutilizzabili. Di seguito sono riportati esempi di come definire e chiamare funzioni in VB.NET:
+
+### Definire una Funzione:
+
+```vb.net
+Function Somma(a As Integer, b As Integer) As Integer
+    ' Calcola la somma di due numeri interi
+    Return a + b
+End Function
+```
+
+In questo esempio, `Somma` è una funzione che accetta due parametri di tipo intero (`a` e `b`) e restituisce la loro somma come un intero.
+
+### Chiamare una Funzione:
+
+```vb.net
+Dim risultato As Integer
+risultato = Somma(5, 3)
+Console.WriteLine("La somma è: " & risultato)
+```
+
+Qui la funzione `Somma` viene chiamata con gli argomenti `5` e `3`, e il risultato viene assegnato alla variabile `risultato`.
+
+### Funzione con Parametri Opzionali:
+
+Puoi anche definire funzioni con parametri opzionali:
+
+```vb.net
+Function Saluta(nome As String, Optional prefisso As String = "Ciao") As String
+    ' Restituisce un saluto personalizzato con un prefisso opzionale
+    Return prefisso & ", " & nome & "!"
+End Function
+```
+
+In questo esempio, `prefisso` è un parametro opzionale con un valore predefinito di "Ciao". Puoi chiamare la funzione con o senza specificare il valore di `prefisso`.
+
+```vb.net
+Dim saluto1 As String = Saluta("Alice")
+Dim saluto2 As String = Saluta("Bob", "Salve")
+
+Console.WriteLine(saluto1)  ' Output: "Ciao, Alice!"
+Console.WriteLine(saluto2)  ' Output: "Salve, Bob!"
+```
+
+### Funzione con Parametri di Output (ByRef):
+
+Puoi anche utilizzare parametri di output utilizzando la parola chiave `ByRef`:
+
+```vb.net
+Sub Dividi(dividendo As Integer, divisore As Integer, ByRef risultato As Integer, ByRef resto As Integer)
+    ' Calcola la divisione e il resto e restituisce i valori attraverso i parametri di output
+    risultato = dividendo \ divisore
+    resto = dividendo Mod divisore
+End Sub
+```
+
+La funzione `Dividi` calcola il risultato della divisione intera e il resto e restituisce i valori attraverso i parametri di output `risultato` e `resto`.
+
+```vb.net
+Dim risultatoDivisione As Integer
+Dim restoDivisione As Integer
+
+Dividi(10, 3, risultatoDivisione, restoDivisione)
+
+Console.WriteLine("Risultato: " & risultatoDivisione)  ' Output: "Risultato: 3"
+Console.WriteLine("Resto: " & restoDivisione)          ' Output: "Resto: 1"
+```
+
+________________
 
 
 
