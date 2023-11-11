@@ -1734,6 +1734,202 @@ Dim descrizioni = persone.Select(Function(p) $"Nome: {p.Nome}, Età: {p.Età}")
 Le Lambda Expressions offrono una sintassi concisa e leggibile per definire funzioni anonime e sono ampiamente utilizzate in combinazione con LINQ per eseguire operazioni di query sui dati.
 
 
+___________________________________________________________________________
+
+
+
+# Collections
+
+
+
+In VB.NET, ci sono diverse classi che rappresentano collezioni di dati. Alcune delle collezioni più comuni sono `List(Of T)`, `Dictionary(Of TKey, TValue)`, `Queue(Of T)`, `Stack(Of T)`, `ArrayList`, ecc. Di seguito sono riportati esempi di alcune di queste collezioni:
+
+### List(Of T):
+
+La classe `List(Of T)` rappresenta una lista dinamica di elementi.
+
+```vb.net
+Dim numeri As New List(Of Integer)()
+numeri.Add(1)
+numeri.Add(2)
+numeri.Add(3)
+
+For Each numero As Integer In numeri
+    Console.WriteLine(numero)
+Next
+```
+
+### Dictionary(Of TKey, TValue):
+
+La classe `Dictionary(Of TKey, TValue)` rappresenta una raccolta di coppie chiave-valore.
+
+```vb.net
+Dim dizionario As New Dictionary(Of String, Integer)()
+dizionario.Add("Uno", 1)
+dizionario.Add("Due", 2)
+dizionario.Add("Tre", 3)
+
+For Each coppia As KeyValuePair(Of String, Integer) In dizionario
+    Console.WriteLine($"{coppia.Key}: {coppia.Value}")
+Next
+```
+
+### Queue(Of T):
+
+La classe `Queue(Of T)` rappresenta una coda di elementi.
+
+```vb.net
+Dim coda As New Queue(Of String)()
+coda.Enqueue("Primo")
+coda.Enqueue("Secondo")
+coda.Enqueue("Terzo")
+
+While coda.Count > 0
+    Console.WriteLine(coda.Dequeue())
+End While
+```
+
+### Stack(Of T):
+
+La classe `Stack(Of T)` rappresenta uno stack di elementi.
+
+```vb.net
+Dim stack As New Stack(Of Char)()
+stack.Push("A"c)
+stack.Push("B"c)
+stack.Push("C"c)
+
+While stack.Count > 0
+    Console.WriteLine(stack.Pop())
+End While
+```
+
+### ArrayList:
+
+L'`ArrayList` è una collezione dinamica che può contenere elementi di diversi tipi.
+
+```vb.net
+Dim lista As New ArrayList()
+lista.Add(1)
+lista.Add("Due")
+lista.Add(3.0)
+
+For Each elemento As Object In lista
+    Console.WriteLine(elemento)
+Next
+```
+
+Ricorda che le collezioni generiche (`List(Of T)`, `Dictionary(Of TKey, TValue)`, ecc.) sono preferibili rispetto alle collezioni non generiche (`ArrayList`, `Hashtable`, ecc.) perché forniscono tipizzazione forte e prestazioni migliori.
+
+Questi sono solo esempi di base, e ci sono molte altre collezioni e scenari di utilizzo in VB.NET. La scelta della collezione dipende dalle esigenze specifiche del tuo codice.
+
+
+
+____________________________________________________
+
+
+
+# unit e testing
+
+
+
+Il testing delle unità è una pratica di sviluppo del software in cui singole unità di codice (come funzioni, metodi o classi) vengono testate separatamente per garantire che funzionino correttamente in isolamento. Questo processo aiuta a identificare e correggere eventuali difetti nel codice prima che vengano integrati nel sistema più ampio. In VB.NET, ci sono diverse tecniche e strumenti che puoi utilizzare per il testing delle unità.
+
+### Esempio di Test di Unità con MSTest:
+
+Supponiamo di avere una semplice classe `Calcolatrice` con metodi di addizione e sottrazione. Utilizzeremo il framework di test MSTest per eseguire i test di unità.
+
+```vb.net
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
+
+' La classe che contiene i metodi di test
+<TestClass>
+Public Class CalcolatriceTest
+    ' Il metodo di test per la somma
+    <TestMethod>
+    Public Sub TestSomma()
+        ' Arrange (preparare)
+        Dim calcolatrice As New Calcolatrice()
+
+        ' Act (agire)
+        Dim risultato As Integer = calcolatrice.Somma(3, 5)
+
+        ' Assert (verificare)
+        Assert.AreEqual(8, risultato)
+    End Sub
+
+    ' Il metodo di test per la sottrazione
+    <TestMethod>
+    Public Sub TestSottrazione()
+        ' Arrange
+        Dim calcolatrice As New Calcolatrice()
+
+        ' Act
+        Dim risultato As Integer = calcolatrice.Sottrazione(8, 3)
+
+        ' Assert
+        Assert.AreEqual(5, risultato)
+    End Sub
+End Class
+
+' La classe Calcolatrice da testare
+Public Class Calcolatrice
+    Public Function Somma(a As Integer, b As Integer) As Integer
+        Return a + b
+    End Function
+
+    Public Function Sottrazione(a As Integer, b As Integer) As Integer
+        Return a - b
+    End Function
+End Class
+```
+
+In questo esempio:
+
+- `TestMethod` è un attributo che indica che il metodo è un metodo di test.
+- `Assert` è una classe che fornisce metodi per verificare le condizioni nei test.
+
+Puoi eseguire questi test utilizzando Visual Studio o un altro strumento di test compatibile con MSTest.
+
+### Strumenti di Testing:
+
+1. **Visual Studio Testing Tools:** Visual Studio include un set di strumenti di testing integrati come MSTest per il testing delle unità.
+
+2. **xUnit.NET e NUnit:** Sono framework di testing alternativi che supportano VB.NET insieme a C#.
+
+3. **Moq e Rhino Mocks:** Strumenti di mocking che consentono di creare oggetti simulati per testare il comportamento del codice.
+
+4. **Coverlet e OpenCover:** Strumenti di code coverage che possono aiutarti a identificare le parti del codice che non sono state coperte dai test.
+
+5. **JetBrains dotCover:** Un altro strumento di code coverage che funziona con Visual Studio.
+
+### Principi di Buon Testing delle Unità:
+
+1. **Isolamento delle Unità:** Le unità dovrebbero essere testate in isolamento. Usa i mock o i stub per isolare le unità dipendenti.
+
+2. **Test di Copertura:** Assicurati di avere una buona copertura dei test. Il tuo obiettivo dovrebbe essere testare tutte le logiche critiche del tuo codice.
+
+3. **Test Ripetibili:** I test dovrebbero essere ripetibili e indipendenti dall'ambiente esterno.
+
+4. **Naming Conventions:** Usa una buona convenzione di denominazione per i tuoi test in modo che siano chiari e descrittivi.
+
+5. **Manutenzione Continua:** Mantieni i tuoi test aggiornati e rivedili regolarmente in modo che rimangano validi con le modifiche al codice.
+
+Il testing delle unità è una parte fondamentale dello sviluppo del software e contribuisce a garantire che il tuo codice sia robusto, manutenibile e libero da difetti.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
