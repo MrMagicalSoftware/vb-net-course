@@ -1207,10 +1207,47 @@ End Sub
 In questo esempio, stiamo creando un oggetto `Persona`, ottenendo e impostando i valori delle sue proprietà utilizzando getter e setter, e infine chiamando un metodo che utilizza le proprietà.
 
 
+# tostring
 
 
+In VB.NET, il metodo `ToString` è un metodo ereditato dalla classe di base `Object` e può essere override nelle classi derivate. Questo metodo restituisce una rappresentazione di stringa dell'oggetto corrente. Se vuoi fornire una rappresentazione personalizzata di stringa per una tua classe, puoi sovrascrivere il metodo `ToString`.
 
+Ecco un esempio di come sovrascrivere il metodo `ToString` in una classe personalizzata:
 
+```vb.net
+Public Class Persona
+    Public Property Nome As String
+    Public Property Età As Integer
+
+    Public Sub New(nome As String, età As Integer)
+        Me.Nome = nome
+        Me.Età = età
+    End Sub
+
+    ' Sovrascrittura del metodo ToString
+    Public Overrides Function ToString() As String
+        Return $"Nome: {Nome}, Età: {Età}"
+    End Function
+End Class
+```
+
+Nell'esempio sopra, la classe `Persona` ha una sovrascrittura del metodo `ToString` che restituisce una stringa formattata contenente il nome e l'età della persona.
+
+Ecco come puoi utilizzare il metodo `ToString`:
+
+```vb.net
+Sub Main()
+    Dim persona As New Persona("Alice", 25)
+
+    ' Utilizzo del metodo ToString implicitamente
+    Console.WriteLine(persona) ' Output: Nome: Alice, Età: 25
+
+    ' Utilizzo esplicito del metodo ToString
+    Console.WriteLine(persona.ToString()) ' Output: Nome: Alice, Età: 25
+End Sub
+```
+
+Quando utilizzi `Console.WriteLine` o qualsiasi altro contesto che richiede una rappresentazione di stringa di un oggetto, il sistema chiama implicitamente il metodo `ToString` dell'oggetto. Puoi anche chiamare il metodo `ToString` esplicitamente, come mostrato nell'esempio sopra.
 
 
 
