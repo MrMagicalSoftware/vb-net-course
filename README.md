@@ -1251,6 +1251,92 @@ Quando utilizzi `Console.WriteLine` o qualsiasi altro contesto che richiede una 
 
 
 
+# ereditarietà
+
+
+L'ereditarietà è uno dei principi fondamentali della programmazione orientata agli oggetti (OOP). Consente di creare una nuova classe basata su una classe esistente, ereditando i suoi membri e attributi. In VB.NET, l'ereditarietà viene implementata utilizzando la parola chiave `Inherits`. Ecco un esempio di ereditarietà:
+
+```vb.net
+' Classe di base (superclasse)
+Public Class Persona
+    Public Property Nome As String
+    Public Property Età As Integer
+
+    ' Costruttore
+    Public Sub New(nome As String, età As Integer)
+        Me.Nome = nome
+        Me.Età = età
+    End Sub
+
+    ' Metodo virtuale
+    Public Overridable Sub Presentati()
+        Console.WriteLine("Ciao, mi chiamo " & Nome & " e ho " & Età & " anni.")
+    End Sub
+End Class
+
+' Classe derivata (sottoclasse)
+Public Class Studente
+    Inherits Persona ' Indica che Studente eredita da Persona
+
+    Public Property CorsoDiStudio As String
+
+    ' Costruttore che richiama il costruttore della classe di base
+    Public Sub New(nome As String, età As Integer, corsoDiStudio As String)
+        MyBase.New(nome, età) ' Chiama il costruttore della classe di base
+        Me.CorsoDiStudio = corsoDiStudio
+    End Sub
+
+    ' Override del metodo della classe di base
+    Public Overrides Sub Presentati()
+        Console.WriteLine("Ciao, mi chiamo " & Nome & " e sono uno studente del corso di " & CorsoDiStudio & ".")
+    End Sub
+End Class
+
+' Esempio di utilizzo
+Sub Main()
+    ' Creazione di un oggetto della classe derivata
+    Dim studente As New Studente("Alice", 20, "Informatica")
+
+    ' Chiamata al metodo della classe derivata
+    studente.Presentati()
+End Sub
+```
+
+In questo esempio:
+
+- La classe `Persona` è la classe di base (o superclasse) che contiene le proprietà `Nome` ed `Età` e il metodo virtuale `Presentati`.
+- La classe `Studente` è una classe derivata (o sottoclasse) che eredita dalla classe `Persona`. Aggiunge una proprietà `CorsoDiStudio` e sovrascrive il metodo `Presentati` per fornire una versione specifica per gli studenti.
+
+L'output del programma sarà:
+
+```
+Ciao, mi chiamo Alice e sono uno studente del corso di Informatica.
+```
+
+L'ereditarietà consente di creare una gerarchia di classi, promuovendo il riutilizzo del codice e la strutturazione logica delle classi. Quando si utilizza l'ereditarietà, è importante comprendere il concetto di polimorfismo, che consente alle istanze di classi derivate di essere trattate come istanze della classe di base.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
