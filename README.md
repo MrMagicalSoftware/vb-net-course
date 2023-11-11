@@ -1318,16 +1318,354 @@ L'ereditarietà consente di creare una gerarchia di classi, promuovendo il riuti
 
 
 
+# overloding
+
+
+L'overloading è una tecnica in programmazione orientata agli oggetti che consente di definire più di una versione di una funzione o di un metodo con lo stesso nome, ma con firme diverse (diversi tipi o numero di parametri). In VB.NET, puoi utilizzare l'overloading per creare più versioni di una funzione o di un metodo con lo stesso nome all'interno di una classe.
+
+Ecco un esempio di overloading in VB.NET:
+
+```vb.net
+Public Class Calcolatrice
+    ' Overloading di un metodo con due parametri di tipo intero
+    Public Function Somma(a As Integer, b As Integer) As Integer
+        Return a + b
+    End Function
+
+    ' Overloading dello stesso metodo con tre parametri di tipo intero
+    Public Function Somma(a As Integer, b As Integer, c As Integer) As Integer
+        Return a + b + c
+    End Function
+
+    ' Overloading di un metodo con parametri di tipo diverso
+    Public Function Somma(a As Double, b As Double) As Double
+        Return a + b
+    End Function
+End Class
+```
+
+In questo esempio, la classe `Calcolatrice` ha tre metodi `Somma`, tutti con lo stesso nome ma con firme diverse:
+
+1. `Somma(a As Integer, b As Integer) As Integer`: Accetta due interi e restituisce un intero.
+2. `Somma(a As Integer, b As Integer, c As Integer) As Integer`: Accetta tre interi e restituisce un intero.
+3. `Somma(a As Double, b As Double) As Double`: Accetta due numeri decimali e restituisce un numero decimale.
+
+Quando chiami uno di questi metodi, VB.NET determinerà quale versione del metodo utilizzare in base al numero e al tipo di argomenti forniti.
+
+Esempio di utilizzo:
+
+```vb.net
+Dim calcolatrice As New Calcolatrice()
+
+Dim risultato1 As Integer = calcolatrice.Somma(3, 5)
+Dim risultato2 As Integer = calcolatrice.Somma(3, 5, 7)
+Dim risultato3 As Double = calcolatrice.Somma(3.5, 2.7)
+
+Console.WriteLine("Risultato 1: " & risultato1) ' Output: 8
+Console.WriteLine("Risultato 2: " & risultato2) ' Output: 15
+Console.WriteLine("Risultato 3: " & risultato3) ' Output: 6.2
+```
+
+Questo è un esempio semplice, ma l'overloading può essere molto utile quando hai situazioni in cui la stessa operazione deve essere eseguita su tipi diversi di dati o con numeri diversi di parametri.
+
+
+# Polimorfismo
+
+
+Il polimorfismo è un concetto chiave nella programmazione orientata agli oggetti (OOP) che consente agli oggetti di essere trattati come istanze della loro classe di base, anche se sono effettivamente istanze di classi derivate. Il polimorfismo permette a un oggetto di assumere più forme o comportamenti a seconda del contesto. Ci sono due tipi principali di polimorfismo: polimorfismo di inclusione e polimorfismo di sovraccarico.
+
+### Polimorfismo di Inclusione (Inheritance Polymorphism):
+
+Il polimorfismo di inclusione si verifica quando una classe deriva da un'altra classe e può essere trattata come un'istanza della classe di base.
+
+```vb.net
+Public Class Animale
+    Public Overridable Sub EmitiSuono()
+        Console.WriteLine("Suono generico dell'animale.")
+    End Sub
+End Class
+
+Public Class Cane
+    Inherits Animale
+
+    Public Overrides Sub EmitiSuono()
+        Console.WriteLine("Woof! Woof!")
+    End Sub
+End Class
+
+Public Class Gatto
+    Inherits Animale
+
+    Public Overrides Sub EmitiSuono()
+        Console.WriteLine("Meow! Meow!")
+    End Sub
+End Class
+
+Sub Main()
+    Dim animale1 As New Cane()
+    Dim animale2 As New Gatto()
+
+    animale1.EmitiSuono() ' Output: Woof! Woof!
+    animale2.EmitiSuono() ' Output: Meow! Meow!
+End Sub
+```
+
+In questo esempio, le classi `Cane` e `Gatto` derivano dalla classe di base `Animale`. Nonostante `animale1` e `animale2` siano dichiarati come oggetti di tipo `Animale`, possono assumere comportamenti specifici delle loro classi derivate.
+
+### Polimorfismo di Sovraccarico (Method Overloading Polymorphism):
+
+Il polimorfismo di sovraccarico si verifica quando una classe fornisce più di una versione di un metodo con lo stesso nome ma firme diverse.
+
+```vb.net
+Public Class Calcolatrice
+    Public Function Somma(a As Integer, b As Integer) As Integer
+        Return a + b
+    End Function
+
+    Public Function Somma(a As Double, b As Double) As Double
+        Return a + b
+    End Function
+End Class
+
+Sub Main()
+    Dim calcolatrice As New Calcolatrice()
+
+    Dim risultato1 As Integer = calcolatrice.Somma(3, 5)
+    Dim risultato2 As Double = calcolatrice.Somma(3.5, 2.7)
+
+    Console.WriteLine("Risultato 1: " & risultato1) ' Output: 8
+    Console.WriteLine("Risultato 2: " & risultato2) ' Output: 6.2
+End Sub
+```
+
+In questo esempio, la classe `Calcolatrice` ha due versioni del metodo `Somma`, una che accetta due interi e restituisce un intero e l'altra che accetta due numeri decimali e restituisce un numero decimale. A seconda del contesto, il compilatore VB.NET sceglierà la versione appropriata del metodo `Somma` da chiamare.
+
+Il polimorfismo consente una maggiore flessibilità e estensibilità nel design del codice, permettendo alle classi derivate di fornire implementazioni specifiche o di estendere il comportamento delle classi di base.
 
 
 
+# interface e classe astratte
+
+
+Le interfacce e le classi astratte sono entrambe utilizzate per definire contratti e fornire una base per le classi derivate in programmazione orientata agli oggetti (OOP). Tuttavia, ci sono alcune differenze chiave tra le due.
+
+### Classe Astratta:
+
+1. **Definizione:**
+   - Una classe astratta è una classe che non può essere istanziata direttamente. Può contenere metodi astratti (senza implementazione) e metodi concreti (con implementazione).
+
+2. **Uso di "MustInherit":**
+   - Una classe astratta è dichiarata con la parola chiave `MustInherit` in VB.NET.
+
+3. **Implementazione:**
+   - Può contenere sia metodi astratti che concreti.
+   - Può avere campi, proprietà, e costruttori.
+
+Esempio:
+
+```vb.net
+Public MustInherit Class Forma
+    Public MustOverride Function CalcolaArea() As Double
+    Public Sub Descrivi()
+        Console.WriteLine("Sono una forma.")
+    End Sub
+End Class
+```
+
+### Interfaccia:
+
+1. **Definizione:**
+   - Un'interfaccia è una collezione di metodi, proprietà, eventi e indebolimenti. Non contiene alcuna implementazione, solo la dichiarazione dei membri.
+
+2. **Uso di "Implements":**
+   - Una classe implementa un'interfaccia utilizzando la parola chiave `Implements` in VB.NET.
+
+3. **Implementazione:**
+   - Tutti i membri di un'interfaccia sono astratti e non hanno un'implementazione.
+   - Non può contenere campi, costruttori o implementazioni.
+
+Esempio:
+
+```vb.net
+Public Interface IAreaCalcolabile
+    Function CalcolaArea() As Double
+End Interface
+```
+
+### Scelta tra Classe Astratta e Interfaccia:
+
+- **Classi astratte:**
+  - Utilizzate quando si desidera fornire una base comune per le classi derivate.
+  - Si può fornire un'implementazione di base per alcuni membri.
+  - Può contenere campi e costruttori.
+
+- **Interfacce:**
+  - Utilizzate quando si desidera definire un contratto senza alcuna implementazione.
+  - Consentono a una classe di implementare più di un'interfaccia.
+  - Promuovono la progettazione basata su contratto.
+
+```vb.net
+Public Class Cerchio
+    Inherits Forma
+    Implements IAreaCalcolabile
+
+    Private Raggio As Double
+
+    Public Sub New(raggio As Double)
+        Me.Raggio = raggio
+    End Sub
+
+    Public Overrides Function CalcolaArea() As Double
+        Return Math.PI * Math.Pow(Raggio, 2)
+    End Function
+End Class
+```
+
+In questo esempio, la classe `Cerchio` eredita dalla classe astratta `Forma` e implementa l'interfaccia `IAreaCalcolabile`. Questa combinazione consente di fornire un'implementazione specifica per la classe `Cerchio`, rispettando il contratto definito dall'interfaccia.
 
 
 
+_____________________________________
 
 
 
+# eventi e delegati 
 
+
+Gli eventi e i delegati sono concetti chiave nella programmazione degli oggetti in .NET e sono spesso utilizzati per implementare il modello di programmazione basato su eventi. Vediamo come funzionano e come vengono utilizzati.
+
+### Delegati:
+
+Un delegato in .NET è un tipo di riferimento che può essere utilizzato per incapsulare un metodo con una firma specifica. Può essere visto come un puntatore a funzione in altri linguaggi di programmazione.
+
+Esempio di dichiarazione di un delegato:
+
+```vb.net
+Public Delegate Sub DelegatoEvento(message As String)
+```
+
+### Eventi:
+
+Un evento è un meccanismo che consente a un oggetto di notificare a un altro oggetto quando si verifica qualcosa di interessante. Gli eventi vengono spesso implementati utilizzando delegati.
+
+Esempio di dichiarazione di un evento in una classe:
+
+```vb.net
+Public Class Publisher
+    ' Dichiarazione di un delegato evento
+    Public Delegate Sub EventHandler(message As String)
+    
+    ' Dichiarazione dell'evento utilizzando il delegato
+    Public Event MessaggioInviato As EventHandler
+    
+    ' Metodo che attiva l'evento
+    Public Sub InviaMessaggio(message As String)
+        ' Check se ci sono handler registrati prima di attivare l'evento
+        If MessaggioInviato IsNot Nothing Then
+            MessaggioInviato.Invoke(message)
+        End If
+    End Sub
+End Class
+```
+
+### Utilizzo di Eventi e Delegati:
+
+```vb.net
+Public Class Subscriber
+    ' Metodo che verrà associato all'evento
+    Public Sub GestisciMessaggio(message As String)
+        Console.WriteLine("Messaggio ricevuto: " & message)
+    End Sub
+End Class
+
+Sub Main()
+    ' Creazione di un'istanza del publisher
+    Dim publisher As New Publisher()
+
+    ' Creazione di un'istanza del subscriber
+    Dim subscriber As New Subscriber()
+
+    ' Associazione del metodo del subscriber all'evento del publisher
+    AddHandler publisher.MessaggioInviato, AddressOf subscriber.GestisciMessaggio
+
+    ' Invio di un messaggio attraverso il publisher
+    publisher.InviaMessaggio("Ciao, mondo!")
+End Sub
+```
+
+In questo esempio:
+
+- `Publisher` ha un evento chiamato `MessaggioInviato` e un metodo chiamato `InviaMessaggio` che attiva l'evento.
+- `Subscriber` ha un metodo chiamato `GestisciMessaggio` che verrà associato all'evento del `Publisher`.
+- Nel metodo `Main`, viene creato un'istanza di `Publisher` e una di `Subscriber`. Successivamente, viene associato il metodo del `Subscriber` all'evento del `Publisher` utilizzando `AddHandler`. Infine, viene inviato un messaggio tramite il `Publisher`, e il metodo del `Subscriber` viene chiamato in risposta all'evento.
+
+Gli eventi e i delegati offrono un modo flessibile per implementare il modello di programmazione basato su eventi, consentendo la comunicazione tra oggetti in modo disaccoppiato e consentendo a più oggetti di rispondere a eventi specifici.
+
+
+
+# generics
+
+
+I generics sono un concetto di programmazione che consente la creazione di classi, interfacce e metodi che operano con tipi specificati solo quando vengono effettivamente utilizzati, senza richiedere la duplicazione del codice per ogni tipo. Questo aumenta la flessibilità e la riusabilità del codice. In VB.NET, i generics sono spesso utilizzati con le collezioni, ma possono essere applicati anche ad altre strutture di codice.
+
+### Esempio di Generics con una Lista:
+
+```vb.net
+' Definizione di una classe generica
+Public Class ContenitoreGenerics(Of T)
+    Private Elementi As List(Of T)
+
+    ' Costruttore
+    Public Sub New()
+        Elementi = New List(Of T)()
+    End Sub
+
+    ' Metodo per aggiungere un elemento alla lista
+    Public Sub AggiungiElemento(elemento As T)
+        Elementi.Add(elemento)
+    End Sub
+
+    ' Metodo per ottenere tutti gli elementi
+    Public Function OttieniElementi() As List(Of T)
+        Return Elementi
+    End Function
+End Class
+```
+
+### Utilizzo della Classe Generica:
+
+```vb.net
+Sub Main()
+    ' Utilizzo della classe generica con tipi specifici
+    Dim contenitoreStringhe As New ContenitoreGenerics(Of String)()
+    contenitoreStringhe.AggiungiElemento("Primo")
+    contenitoreStringhe.AggiungiElemento("Secondo")
+
+    ' Ottenere e stampare gli elementi
+    Dim stringhe As List(Of String) = contenitoreStringhe.OttieniElementi()
+    For Each elemento As String In stringhe
+        Console.WriteLine(elemento)
+    Next
+
+    ' Utilizzo della classe generica con tipi diversi
+    Dim contenitoreNumeri As New ContenitoreGenerics(Of Integer)()
+    contenitoreNumeri.AggiungiElemento(1)
+    contenitoreNumeri.AggiungiElemento(2)
+
+    ' Ottenere e stampare gli elementi
+    Dim numeri As List(Of Integer) = contenitoreNumeri.OttieniElementi()
+    For Each numero As Integer In numeri
+        Console.WriteLine(numero)
+    Next
+End Sub
+```
+
+In questo esempio:
+
+- La classe `ContenitoreGenerics` è una classe generica che può contenere elementi di qualsiasi tipo (`T`).
+- Viene creata un'istanza della classe generica con tipi specifici (`String` e `Integer`) e vengono aggiunti e stampati gli elementi di ciascun tipo.
+
+L'utilizzo di generics consente di scrivere codice che può lavorare con diversi tipi di dati, fornendo al contempo il controllo del tipo a livello di compilazione. Questo è particolarmente utile per le strutture dati e le classi che devono essere flessibili e riusabili con diversi tipi di dati.
 
 
 
