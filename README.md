@@ -1668,10 +1668,70 @@ In questo esempio:
 L'utilizzo di generics consente di scrivere codice che può lavorare con diversi tipi di dati, fornendo al contempo il controllo del tipo a livello di compilazione. Questo è particolarmente utile per le strutture dati e le classi che devono essere flessibili e riusabili con diversi tipi di dati.
 
 
+_________________________________________
+
+# Linq e Lambda Expressions
 
 
+Language Integrated Query (LINQ) è un insieme di estensioni al linguaggio di programmazione C# e VB.NET che consente la scrittura di query direttamente nel codice sorgente. LINQ fornisce un modo più dichiarativo e uniforme per eseguire operazioni di query su diverse origini di dati, come elenchi, raccolte, database, XML e altro ancora.
 
+Le espressioni lambda, d'altra parte, sono funzioni anonime che possono essere utilizzate per creare oggetti di tipo delegate o espressioni tree. Sono spesso utilizzate in combinazione con LINQ per scrivere query in modo più conciso.
 
+### Esempio LINQ con Lambda Expression:
+
+```vb.net
+Imports System.Linq
+
+' Creazione di una lista di persone
+Dim persone As New List(Of Persona) From
+{
+    New Persona With {.Nome = "Alice", .Età = 25},
+    New Persona With {.Nome = "Bob", .Età = 30},
+    New Persona With {.Nome = "Charlie", .Età = 22},
+    New Persona With {.Nome = "David", .Età = 35}
+}
+
+' Esempio di query LINQ con Lambda Expression
+Dim personeSopra30 As IEnumerable(Of Persona) = persone.Where(Function(p) p.Età > 30)
+
+' Stampa dei risultati
+For Each persona As Persona In personeSopra30
+    Console.WriteLine(persona.Nome & " - " & persona.Età)
+Next
+
+' Definizione della classe Persona
+Public Class Persona
+    Public Property Nome As String
+    Public Property Età As Integer
+End Class
+```
+
+In questo esempio:
+
+- `Where` è un operatore di filtro di LINQ che viene utilizzato per selezionare le persone con un'età superiore a 30.
+- La Lambda Expression `Function(p) p.Età > 30` specifica il criterio di filtro.
+
+### Altri Esempi di Lambda Expression:
+
+#### Selezione di campi specifici:
+
+```vb.net
+Dim nomiPersone = persone.Select(Function(p) p.Nome)
+```
+
+#### Ordinamento:
+
+```vb.net
+Dim personeOrdinatePerEtà = persone.OrderBy(Function(p) p.Età)
+```
+
+#### Proiezione:
+
+```vb.net
+Dim descrizioni = persone.Select(Function(p) $"Nome: {p.Nome}, Età: {p.Età}")
+```
+
+Le Lambda Expressions offrono una sintassi concisa e leggibile per definire funzioni anonime e sono ampiamente utilizzate in combinazione con LINQ per eseguire operazioni di query sui dati.
 
 
 
