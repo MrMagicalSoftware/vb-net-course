@@ -1030,6 +1030,185 @@ In questo esempio, abbiamo creato un secondo oggetto `persona2` della classe `Pe
 L'OOP consente di organizzare il codice in modo più modulare e di rappresentare concetti del mondo reale in modo più intuitivo. Le classi possono avere proprietà, metodi, eventi e molto altro, fornendo un modo potente per modellare e strutturare il tuo codice.
 
 
+______________________________________________________
+
+
+# modificatori di accesso
+
+
+
+I modificatori di accesso in Visual Basic .NET determinano la visibilità di campi, proprietà, metodi e altre entità all'interno di una classe. Ci sono diversi modificatori di accesso disponibili, e ognuno ha un impatto diverso sulla visibilità degli elementi all'interno della classe. Ecco una panoramica dei principali modificatori di accesso in VB.NET:
+
+### Public:
+
+- **Descrizione:** Gli elementi dichiarati come `Public` sono accessibili da qualsiasi parte del codice, sia all'interno della stessa classe che in altre classi.
+  
+- **Esempio:**
+  ```vb.net
+  Public Class MiaClasse
+      Public Nome As String
+  End Class
+  ```
+
+### Private:
+
+- **Descrizione:** Gli elementi dichiarati come `Private` sono accessibili solo all'interno della stessa classe. Sono nascosti al di fuori della classe.
+
+- **Esempio:**
+  ```vb.net
+  Public Class MiaClasse
+      Private Contatore As Integer
+  End Class
+  ```
+
+### Protected:
+
+- **Descrizione:** Gli elementi dichiarati come `Protected` sono accessibili dalla stessa classe e dalle sue classi derivate (sottoclassi).
+
+- **Esempio:**
+  ```vb.net
+  Public Class ClasseBase
+      Protected CampoProtetto As String
+  End Class
+
+  Public Class ClasseDerivata
+      Inherits ClasseBase
+
+      Sub Metodo()
+          Console.WriteLine(CampoProtetto)
+      End Sub
+  End Class
+  ```
+
+### Friend (Internal in C#):
+
+- **Descrizione:** Gli elementi dichiarati come `Friend` sono accessibili all'interno dell'assembly corrente. Un assembly è un file eseguibile o una libreria dinamica.
+
+- **Esempio:**
+  ```vb.net
+  Friend Class MiaClasseAmica
+      Friend Nome As String
+  End Class
+  ```
+
+### Protected Friend (Protected Internal in C#):
+
+- **Descrizione:** Gli elementi dichiarati come `Protected Friend` sono accessibili dalla stessa classe, dalle sue classi derivate e all'interno dell'assembly corrente.
+
+- **Esempio:**
+  ```vb.net
+  Public Class ClasseBase
+      Protected Friend Campo As String
+  End Class
+
+  Public Class ClasseDerivata
+      Inherits ClasseBase
+
+      Sub Metodo()
+          Console.WriteLine(Campo)
+      End Sub
+  End Class
+  ```
+
+### Private Protected (C# 7.2 e versioni successive):
+
+- **Descrizione:** Gli elementi dichiarati come `Private Protected` sono accessibili solo dalla stessa classe e dalle sue classi derivate all'interno dell'assembly corrente.
+
+- **Esempio:**
+  ```vb.net
+  Public Class ClasseBase
+      Private Protected Campo As String
+  End Class
+
+  Public Class ClasseDerivata
+      Inherits ClasseBase
+
+      Sub Metodo()
+          Console.WriteLine(Campo)
+      End Sub
+  End Class
+  ```
+
+Questi modificatori di accesso consentono di controllare la visibilità e l'accesso ai membri di una classe, contribuendo a mantenere l'incapsulamento e la modularità del codice.
+
+
+
+# getter e setter
+
+I getter e setter sono metodi che consentono di ottenere (getter) e impostare (setter) i valori di campi privati all'interno di una classe. Questo approccio, noto come incapsulamento, offre un maggiore controllo sull'accesso ai dati della classe. Ecco un esempio di come utilizzare getter e setter in VB.NET:
+
+```vb.net
+Public Class Persona
+    ' Campi privati
+    Private _nome As String
+    Private _età As Integer
+
+    ' Proprietà Nome con getter e setter
+    Public Property Nome() As String
+        Get
+            Return _nome
+        End Get
+        Set(value As String)
+            _nome = value
+        End Set
+    End Property
+
+    ' Proprietà Età con getter e setter
+    Public Property Età() As Integer
+        Get
+            Return _età
+        End Get
+        Set(value As Integer)
+            If value >= 0 Then
+                _età = value
+            Else
+                Console.WriteLine("L'età non può essere negativa.")
+            End If
+        End Set
+    End Property
+
+    ' Costruttore
+    Public Sub New(nome As String, età As Integer)
+        _nome = nome
+        ' Utilizziamo il setter per eseguire la validazione
+        Me.Età = età
+    End Sub
+
+    ' Metodo che utilizza le proprietà
+    Public Sub Presentati()
+        Console.WriteLine("Ciao, mi chiamo " & Nome & " e ho " & Età & " anni.")
+    End Sub
+End Class
+```
+
+In questo esempio, la classe `Persona` ha due campi privati (`_nome` e `_età`) e due proprietà (`Nome` ed `Età`) con getter e setter. Il setter della proprietà `Età` include una validazione per assicurarsi che l'età non sia negativa.
+
+Puoi utilizzare la classe nel seguente modo:
+
+```vb.net
+Sub Main()
+    ' Creazione di un oggetto Persona
+    Dim persona As New Persona("Alice", 25)
+
+    ' Utilizzo del getter per ottenere il valore
+    Console.WriteLine("Nome: " & persona.Nome)
+    Console.WriteLine("Età: " & persona.Età)
+
+    ' Utilizzo del setter per modificare il valore
+    persona.Nome = "Bob"
+    ' Utilizziamo il setter con validazione per l'età
+    persona.Età = -5
+
+    ' Chiamata a un metodo che utilizza le proprietà
+    persona.Presentati()
+End Sub
+```
+
+In questo esempio, stiamo creando un oggetto `Persona`, ottenendo e impostando i valori delle sue proprietà utilizzando getter e setter, e infine chiamando un metodo che utilizza le proprietà.
+
+
+
+
 
 
 
