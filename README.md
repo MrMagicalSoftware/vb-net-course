@@ -178,6 +178,66 @@ End Module
 ```
 
 
+# tipi di dati 
+
+
+In Visual Basic .NET, ci sono diversi tipi di dati.
+dati più utilizzati.
+
+
+
+1. **Interi (Integer):**
+   - `Integer`: rappresenta numeri interi, positivi o negativi.
+
+   ```vb.net
+   Dim numeroIntero As Integer = 42
+   ```
+
+2. **Decimali (Double, Single, Decimal):**
+   - `Double`: rappresenta numeri decimali a precisione doppia.
+   - `Single`: rappresenta numeri decimali a precisione singola.
+   - `Decimal`: rappresenta numeri decimali con precisione elevata.
+
+   ```vb.net
+   Dim numeroDecimaleDouble As Double = 3.14
+   Dim numeroDecimaleSingle As Single = 3.14F
+   Dim numeroDecimaleDecimal As Decimal = 3.14D
+   ```
+
+3. **Caratteri (Char):**
+   - `Char`: rappresenta un singolo carattere Unicode.
+
+   ```vb.net
+   Dim carattere As Char = "A"c
+   ```
+
+4. **Stringhe (String):**
+   - `String`: rappresenta una sequenza di caratteri.
+
+   ```vb.net
+   Dim testo As String = "Ciao, mondo!"
+   ```
+
+5. **Booleani (Boolean):**
+   - `Boolean`: rappresenta un valore booleano (True o False).
+
+   ```vb.net
+   Dim condizione As Boolean = True
+   ```
+
+6. **Data e Ora (Date):**
+   - `Date`: rappresenta una data e un'ora.
+
+   ```vb.net
+   Dim dataOraCorrente As Date = Date.Now
+   ```
+
+7. **Array:**
+   - `Array`: rappresenta una raccolta di elementi dello stesso tipo.
+
+   ```vb.net
+   Dim numeri() As Integer = {1, 2, 3, 4, 5}
+   ```
 
 
 
